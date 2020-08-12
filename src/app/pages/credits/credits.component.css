@@ -1,0 +1,28 @@
+
+/* Credits and Acknowledgments */
+/* =============================================*/
+
+.credit-text {
+	font-style: italic;
+}
+
+.book-title {
+	font-style: normal;
+	background: linear-gradient(to right, #ff8a00,#da1b60);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-box-decoration-break: clone;
+}
+
+.credit-category {
+	font-style: italic;
+	color: #39f;
+}
+
+.credits-list li {
+	margin-bottom: 20px;
+}
+
+.sublist {
+	padding-inline-start: 40px;
+}

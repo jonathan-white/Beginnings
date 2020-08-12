@@ -1,0 +1,16 @@
+<div class="navigation-list" [ngClass]="{'hide-list' : hideList}">
+  <div class="btn-close" (click)="toggleList()" title="{{ hideList ? 'expand' : 'collapse'}}">
+    <i class="fas fa-chevron-left" *ngIf="!hideList"></i>
+    <i class="fas fa-chevron-right" *ngIf="hideList"></i>
+  </div>
+  <div class="recipe-list-title">{{section | uppercase}} RECIPES</div>
+  <div class="filter-input">
+    <input class="side-filter" placeholder="filter" type="text" value="" name="search" [(ngModel)]="search" />
+    <div class="cancel-filter" *ngIf="search.length > 0" (click)="clearFilter()">X</div>
+  </div>
+  <ul class="recipe-list" *ngIf="recipeList">
+    <li *ngFor="let recipe of recipeList | filter : search">
+      <a class="side-link" [ngClass]="{'active' : activeRecipe === recipe.displayName}" routerLink="/recipes/{{recipe.section}}/{{recipe.techTitle}}">{{recipe.displayName}}</a>
+    </li>
+  </ul>
+</div>

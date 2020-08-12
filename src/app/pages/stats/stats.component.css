@@ -1,0 +1,93 @@
+.container {
+  padding: 20px;
+}
+
+h1, h2, h3, h4 {
+  color: gold;
+}
+
+.recipes-table-container {
+  background-color: #fff;
+  color: #000;
+  margin: 20px 0;
+  font-size: .875rem;
+}
+
+.recipes-table-container a {
+  color: #000;
+}
+
+.recipes-table-container a:hover {
+  color: #ff6300;
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+.btn-edit {
+  color: #d036e2;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.ingr-attributes {
+  font-size: 10px;
+}
+
+.ingr-attributes .fa-check {
+  color: #42A948;
+}
+
+.ingr-attributes .fa-times {
+  color: #a94442;
+}
+
+.ingr-count {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+
+.ingr-details {
+  justify-content: space-around;
+}
+
+.title-col {
+  width: 50%;
+}
+
+.ing-col,
+.step-col {
+  width: 25%;
+}
+
+.recipe-row {
+  display: flex;
+  position: relative;
+}
+
+.recipes-table-container tbody {
+  display: block;
+  overflow: auto;
+  height: 300px;
+  width: 100%;
+}
+
+.recipes-table-container thead, td {
+  display: block;
+  width: 100%;
+}

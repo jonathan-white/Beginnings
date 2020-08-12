@@ -1,0 +1,41 @@
+<!-- Main Content -->
+<div *ngIf="section">
+
+  <main class="content-wrapper delayed-display" [ngClass]="{'delayed-display' : showIntro}">
+    <div class="content">
+      <section>
+        <h1 class="recipe-title">{{section.displayName}}</h1>
+        <p>{{section.description}}</p>
+      </section>
+      <section class="appetizers">
+        <div class="options">
+          <h3>In This Section</h3>
+          <div class="options-menu">
+            <button (click)="sortByTitle()">Sort by Name</button>
+            <button (click)="sortByDateCreated()">Sort by Date</button>
+            <button (click)="download('CSV')">Export</button>
+          </div>
+        </div>
+        <ul class="recipes-list">
+          <li class="recipe-entry" *ngFor="let recipe of sectionRecipes">
+            <a class='recipe-link' routerLink='/recipes/{{recipe.section}}/{{recipe.techTitle}}'>
+              {{recipe.displayName}}<div class='rating stars-{{recipe.rating}}'></div>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <app-footer></app-footer>
+  </main>
+
+  <!-- Introductory Quote -->
+  <div class="intro" [ngClass]="{'show' : showIntro}" *ngIf="section">
+    <blockquote class="intro-quote">
+      {{section.introQuote.quote}}
+    </blockquote>
+    <cite class="intro-cite">&mdash; {{section.introQuote.author}}</cite>
+    <i class="btn-close far fa-window-close" (click)="skipIntro()"></i>
+    <div class="btn-skip-intro" (click)="skipIntro()">Skip Intro</div>
+  </div>
+    
+</div>

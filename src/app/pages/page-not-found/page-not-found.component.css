@@ -1,0 +1,12 @@
+/* 404 Error Page */
+/* =============================================*/
+.err-image {
+	position: absolute;
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.err-image img {
+	width: 650px;
+}

@@ -1,0 +1,41 @@
+.akron-images li {
+  margin-bottom: 30px;
+  display: flex;
+  position: relative;
+}
+
+.akron-images .image-holder,
+.akron-images .text-holder {
+  widows: 550px;
+}
+
+.akron-images .image-holder {
+  z-index: 1;
+}
+
+.akron-images img {
+	border: 1px solid #fff;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.akron-images img:hover {
+  transform: scale(1.02);
+}
+
+.akron-images .image-holder:hover + .text-holder {
+  left: 0;
+}
+
+.akron-images .text-holder {
+  position: relative;
+  overflow: hidden;
+  left: -50%;
+  transition: left 300ms ease; 
+}
+
+.akron-images .info-text {
+  max-width: 550px;
+  padding: 30px;
+  align-self: center;
+}

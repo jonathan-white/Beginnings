@@ -1,0 +1,133 @@
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+
+.page-edit-recipe {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px;
+  width: calc(100% - 40px);
+  color: #000;
+  font-size: 14px;
+}
+
+.recipe-form-col {
+  border-right: 2px solid #aaa;
+}
+
+.recipe-lists-col {
+  border-left: 2px solid #aaa;
+}
+
+/* Recipe ID */
+.recipe-attr {
+  margin-bottom: 15px; 
+}
+
+.recipe-label {
+  font-weight: 600;
+}
+
+input {
+  border-radius: 10px;
+}
+
+/* Form Controls */
+
+#recipe-found-on-page,
+#recipe-yield,
+#recipe-rating {
+  width: 75px;
+}
+
+#recipe-section {
+  width: 100px;
+}
+
+#recipe-serving-temp {
+  width: 125px;
+}
+
+#recipe-category,
+#recipe-subcategory {
+  width: 150px;
+}
+
+/* Validation */
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
+
+/* Buttons */
+.btn {
+  margin-right: 10px;
+}
+
+/* Containers */
+
+.recipe-ingredients-container,
+.recipe-instructions-container,
+.recipe-images-container {
+  width: 100%;
+  min-height: 200px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.recipe-ingredients-container.read-only,
+.recipe-instructions-container.read-only,
+.recipe-images-container.read-only {
+  background-color: #fff;
+}
+
+/* Ingredients */
+.ingredient-entry {
+  margin-bottom: 5px;
+}
+
+.ingredient-entry.editmode input {
+  outline: none;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  width: 300px;
+}
+
+/* Instructions */
+.instructions-entry {
+  margin-bottom: 10px;
+}
+
+/* .instructions-entry.editmode {
+
+} */
+
+/* Editing */
+.edit-row {
+  display: flex;
+}
+
+.edit-content {
+  margin-right: 10px;
+}
+
+.edit-content input {
+  padding: 5px;
+}
+
+.i-delete {
+  color: #a94442;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.i-save {
+  color: #42A948;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 10px;
+}

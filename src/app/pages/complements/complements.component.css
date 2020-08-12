@@ -1,0 +1,30 @@
+/* Grid Container */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 30px 100px 100px);
+  grid-template-rows: 40px 100px 50px 50px 100px;
+  grid-template-areas: 
+    "header header header header header header"
+    "section wine wine section wine wine"
+    "section wine wine section wine wine"
+    "section wine wine section wine wine"
+    "section wine wine section wine wine";
+    
+}
+
+/* Grid Items */
+.item-a {
+  grid-area: header;
+  background-color: #333349;
+}
+
+.item-b {
+  grid-area: section;
+  background-color: #e9d786;
+}
+
+.item-c {
+  grid-area: wine;
+  background-color: #8c91ad;
+}
+

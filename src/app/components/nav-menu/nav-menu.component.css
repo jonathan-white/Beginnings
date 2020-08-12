@@ -1,0 +1,64 @@
+/* Sidenav */
+/* =============================================*/
+.brand-menu:hover app-nav-menu.displayMenu .sidenav {
+  height: 555px;
+  cursor: pointer;
+}
+
+.sidenav{
+  position: relative;
+  height: 0;
+  transition: height 300ms;
+}
+
+.displayMenu .sidenav{
+  height: 555px;
+}
+
+.sidenav {
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  overflow: hidden;
+}
+
+.sidenav-links-list {
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+	background-color: rgb(30, 10, 30);
+	border-radius: 10px;
+	border: 1px solid #bbb;
+}
+
+.sidenav-item {
+  width: 320px;
+}
+
+.sidenav-item:hover a {
+  color: rgb(255, 99, 0);
+}
+
+.sidenav-link {
+  display: block;
+  padding: 10px 0px;
+  margin-right: 10px;
+	border-bottom: 1px solid #888;
+}
+
+li:last-of-type .sidenav-link {
+	border-bottom: 0;
+}
+
+.sidenav-link:hover {
+	cursor: pointer;
+	background-color: rgba(153, 51, 153,.2);
+}
+li:first-of-type .sidenav-link:hover {
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+li:last-of-type .sidenav-link:hover {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}

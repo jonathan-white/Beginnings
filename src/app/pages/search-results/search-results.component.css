@@ -1,0 +1,8 @@
+#searchResults h2 {
+  color: gold;
+}
+
+.matched-item {
+  font-size: .875em;
+  color: #aaa;
+}

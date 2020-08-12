@@ -1,0 +1,73 @@
+<!-- Main Content -->
+<main class="content-wrapper">
+  <div class="content">
+    <h2 class="search-results-title">Results</h2>
+
+    <div *ngIf="!hasResults">
+      <p class="search-results-subtitle">No Matches found for "{{query}}" in the collection.</p>
+    </div>
+    <div *ngIf="hasResults">
+      <p class="search-results-subtitle">Recipes found for "{{query}}" in the collection.</p>  
+    </div>
+
+    <ul id="searchResults">
+      <li *ngIf="titleMatches && titleMatches.length > 0">
+        <h2 *ngIf="titleMatches.length === 1">{{titleMatches.length}} Title Match</h2>
+        <h2 *ngIf="titleMatches.length > 1">{{titleMatches.length}} Title Matches</h2>
+        <ul>
+          <li class="recipe-entry" *ngFor="let match of titleMatches">
+            <a class="recipe-link" href="/recipes/{{match.section}}/{{match.techTitle}}">
+              {{match.displayName}}<div class="rating stars-{{match.rating}}"></div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="ingredientMatches && ingredientMatches.length > 0">
+        <h2 *ngIf="ingredientMatches.length === 1">{{ingredientMatches.length}} Ingredient Match</h2>
+        <h2 *ngIf="ingredientMatches.length > 1">{{ingredientMatches.length}} Ingredient Matches</h2>
+        <ul>
+          <li class="recipe-entry" *ngFor="let match of ingredientMatches">
+            <a class="recipe-link" href="/recipes/{{match.section}}/{{match.techTitle}}">
+              {{match.displayName}} <span class="matched-item">({{match.matchedIngredient}})</span><div class="rating stars-{{match.rating}}"></div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="keywordMatches && keywordMatches.length > 0">
+        <h2 *ngIf="keywordMatches.length === 1">{{keywordMatches.length}} Keyword Match</h2>
+        <h2 *ngIf="keywordMatches.length > 1">{{keywordMatches.length}} Keyword Matches</h2>
+        <ul>
+          <li class="recipe-entry" *ngFor="let match of keywordMatches">
+            <a class="recipe-link" href="/recipes/{{match.section}}/{{match.techTitle}}">
+              {{match.displayName}} <span class="matched-item">({{match.matchedKeyword}})</span><div class="rating stars-{{match.rating}}"></div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="categoryMatches && categoryMatches.length > 0">
+        <h2 *ngIf="categoryMatches.length === 1">{{categoryMatches.length}} Category Match</h2>
+        <h2 *ngIf="categoryMatches.length > 1">{{categoryMatches.length}} Category Matches</h2>
+        <ul>
+          <li class="recipe-entry" *ngFor="let match of categoryMatches">
+            <a class="recipe-link" href="/recipes/{{match.section}}/{{match.techTitle}}">
+              {{match.displayName}}<div class="rating stars-{{match.rating}}"></div>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="ratingMatches && ratingMatches.length > 0">
+        <h2 *ngIf="ratingMatches.length === 1">{{ratingMatches.length}} Rating Match</h2>
+        <h2 *ngIf="ratingMatches.length > 1">{{ratingMatches.length}} Rating Matches</h2>
+        <ul>
+          <li class="recipe-entry" *ngFor="let match of ratingMatches">
+            <a class="recipe-link" href="/recipes/{{match.section}}/{{match.techTitle}}">
+              {{match.displayName}}<div class="rating stars-{{match.rating}}"></div>
+            </a>
+          </li>
+        </ul>
+      </li> 
+
+    </ul>
+  </div>
+  <app-footer></app-footer>
+</main>

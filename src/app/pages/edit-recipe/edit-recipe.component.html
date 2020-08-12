@@ -1,0 +1,251 @@
+<div *ngIf="recipe">
+  <main class="content-wrapper">
+    <div [hidden]="submitted">
+      <div class="container page-edit-recipe">
+        <div class="row">
+          <!-- Left Side -->
+          <div class="col-md-6">
+              <h1>Recipe Form</h1>
+              <div class="recipe-attr"><span class="recipe-label">Recipe ID:</span> {{recipe._id || 'Not Assigned'}}</div>
+              <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+                <div class="form-group">
+                  <label for="recipe-displayName">Display Name</label>
+                  <input type="text" class="form-control" id="recipe-displayName" required
+                    [(ngModel)]="recipe.displayName" name="displayName" #name="ngModel">
+                  <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Enter a Recipe Display Name
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-tech-title">Tech Title</label>
+                  <input type="text" class="form-control" id="recipe-tech-title" required
+                  [(ngModel)]="recipe.techTitle" name="techTitle" #techTitle="ngModel">
+                  <div [hidden]="techTitle.valid || techTitle.pristine" class="alert alert-danger">
+                    Tech Title is required
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-found-on-page">Found on Page</label>
+                  <input type="number" class="form-control" id="recipe-found-on-page" required
+                  [(ngModel)]="recipe.foundOnPage" name="foundOnPage" min="16" max="179" #page="ngModel">
+                  <div [hidden]="page.valid || page.pristine" class="alert alert-danger">
+                    Enter the page the recipe is found on
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-section">Section</label>
+                  <select class="form-control" id="recipe-section" required
+                    [(ngModel)]="recipe.section" name="section" #section="ngModel">
+                    <option *ngFor="let section of sections" [value]="section">{{section}}</option>
+                  </select>
+                  <div [hidden]="section.valid || section.pristine" class="alert alert-danger">
+                    What section does this recipe belong to?
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-category">Category</label>
+                  <select class="form-control" id="recipe-category"
+                    [(ngModel)]="recipe.category" name="category">
+                    <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-subcategory">Sub Category</label>
+                  <input type="text" class="form-control" id="recipe-subcategory"
+                  [(ngModel)]="recipe.subcategory" name="subcategory">
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-serving-temp">Serving Temperature</label>
+                  <select class="form-control" id="recipe-serving-temp" required
+                    [(ngModel)]="recipe.servingTemp" name="servingTemp" #servtemp="ngModel">
+                    <option *ngFor="let temp of servingTemps" [value]="temp">{{temp}}</option>
+                  </select>
+                  <div [hidden]="servtemp.valid || servtemp.pristine" class="alert alert-danger">
+                    Enter a recommended serving temperature
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-yield">Yields (in servings)</label>
+                  <input type="number" class="form-control" id="recipe-yield" min="0" required
+                  [(ngModel)]="recipe.yieldInServings" name="yieldInServings" #servings="ngModel">
+                  <div [hidden]="servings.valid || servings.pristine" class="alert alert-danger">
+                    How many servings will this produce?
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="recipe-rating">Rating</label>
+                  <select class="form-control" id="recipe-rating" required
+                    [(ngModel)]="recipe.rating" name="rating" #score="ngModel">
+                    <option *ngFor="let rating of ratings" [value]="rating">{{rating}}</option>
+                  </select>
+                  <div [hidden]="score.valid || score.pristine" class="alert alert-danger">
+                    Enter a rating
+                  </div>
+                </div>
+
+                <div class="recipe-attr"><span class="recipe-label">Date Created:</span> {{dateCreated}}</div>
+                <div class="recipe-attr"><span class="recipe-label">Date Modified:</span> {{dateModified}}</div>
+
+                <button type="submit" class="btn btn-success" [disabled]="!recipeForm.form.valid">Submit</button>
+                <button type="button" class="btn btn-default" (click)="newRecipe(); recipeForm.reset()">New Recipe</button>
+              </form>  
+          </div>
+
+          <!-- Right Side -->
+          <div class="col-md-6 recipe-lists-col">
+            <div>
+              <div class="recipe-label">Ingredients</div>
+              <div class="recipe-ingredients-container">
+                <ul>
+                  <li class="ingredient-entry editmode" *ngFor="let item of recipe.ingredients; let index = index; trackBy: trackByIndex">
+                    <div class="edit-row">
+                      <div class="edit-content">
+                        <input type="text" [(ngModel)]="recipe.ingredients[index].description[0]">
+                        <input type="text" [(ngModel)]="recipe.ingredients[index].displayName">
+                      </div>
+                      <div class="edit-options">
+                        <i class="far fa-save i-save" title="Save" (click)="saveIngredient(recipe.ingredients[index])"></i>
+                        <i class="far fa-window-close i-delete" title="Delete" (click)="deleteIngredient(recipe.ingredients[index]._id)"></i>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="ingredient-entry editmode">
+                    <div class="edit-row">
+                      <div class="edit-content">
+                        <input type="text" placeholder="Enter an ingredient" #newIngr>
+                      </div>
+                      <div class="edit-options">
+                        <i class="far fa-save i-save" title="Save" (click)="newIngredient(newIngr.value); clear(newIngr)"></i>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="recipe-label">Instructions</div>
+              <div class="recipe-instructions-container">
+                <ul>
+                  <li class="instructions-entry editmode" *ngFor="let item of recipe.instructions; let index = index; trackBy: trackByIndex">
+                    <div class="edit-row">
+                      <div class="edit-content">
+                        <textarea cols="70" rows="5" [(ngModel)]="recipe.instructions[index]"></textarea>
+                      </div>
+                      <div class="edit-options">
+                        <i class="far fa-save i-save" title="Save" (click)="saveInstruction(recipe.instructions[index])"></i>
+                        <i class="far fa-window-close i-delete" title="Delete" (click)="deleteInstruction(index)"></i>  
+                      </div>
+                    </div>
+                  </li>
+                  <li class="instructions-entry editmode">
+                    <div class="edit-row">
+                      <div class="edit-content">
+                        <textarea cols="70" rows="5" placeholder="Enter instructions" #newStep></textarea>
+                      </div>
+                      <div class="edit-options">
+                        <i class="far fa-save i-save" title="Save" (click)="newInstruction(newStep.value); clear(newStep)"></i>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="recipe-label">Images</div>
+              <div class="recipe-images-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!submitted">
+      <div class="container page-edit-recipe">
+        <div class="row">
+          <!-- Left Side -->
+          <div class="col-md-6">
+            <h2>You submitted the following:</h2>
+            <div class="row">
+              <div class="col-xs-3">Display Name</div>
+              <div class="col-xs-9">{{ recipe.displayName }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Tech Title</div>
+              <div class="col-xs-9">{{ recipe.techTitle }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Found on Page</div>
+              <div class="col-xs-9">{{ recipe.foundOnPage }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Section</div>
+              <div class="col-xs-9">{{ recipe.section }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Category</div>
+              <div class="col-xs-9">{{ recipe.category }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Sub Category</div>
+              <div class="col-xs-9">{{ recipe.subcategory }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Serving Temperature</div>
+              <div class="col-xs-9">{{ recipe.servingTemp }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Yield (in servings)</div>
+              <div class="col-xs-9">{{ recipe.yieldInServings }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Rating</div>
+              <div class="col-xs-9">{{ recipe.rating }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Date Created</div>
+              <div class="col-xs-9">{{ dateCreated }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3">Date Modified</div>
+              <div class="col-xs-9">{{ dateModified }}</div>
+            </div>
+            <br>
+            <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+          </div>
+
+          <!-- Right Side -->
+          <div class="col-md-6 recipe-lists-col">
+            <div>
+              <div class="recipe-label">Ingredients</div>
+              <div class="recipe-ingredients-container read-only">
+                <ul>
+                  <li class="ingredient-entry" *ngFor="let item of recipe.ingredients">{{item.displayName}}</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="recipe-label">Instructions</div>
+              <div class="recipe-instructions-container read-only">
+                <ul>
+                  <li class="instructions-entry" *ngFor="let item of recipe.instructions">{{item}}</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <div class="recipe-label">Images</div>
+              <div class="recipe-images-container read-only"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

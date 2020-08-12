@@ -1,0 +1,32 @@
+/* Edible Flowers */
+/* =============================================*/
+
+.edible-flowers {
+	font-style: italic;
+}
+
+.edible-flowers h2 {
+	font-family: serif;
+}
+
+.edible-flowers .flower-text {
+	color: #c2c2c2;
+}
+
+#flower-preview {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  min-height: 500px;
+  border-radius: 20px;
+	z-index: -1;
+}
+
+.subtitle {
+	font-size: 1rem;
+	font-weight: 400;
+	font-family: serif;
+	font-style: italic;
+}

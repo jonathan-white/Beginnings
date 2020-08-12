@@ -1,0 +1,22 @@
+<!-- Main Content -->
+<main class="content-wrapper">
+  <div class="content">
+    <h1>{{title}}</h1>
+    <p>Since its inception, Akron, Ohio, has been a community of beginnings &mdash; many of which are highlighted throughout this book.</p> 
+    <p>In that same point, so too has the Junior League of Akron been an organization of beginnings, developing and donating numerous charitable projects to benefit the hometown we love so well.</p> 
+    <p>What better way to express our enthusiasm and continued support than by offering this special collection of appetizers, the beginnings of so many meals and gatherings, to all of you.</p> 
+    <p>Profits from the purchase of this cookbook will benefit the continued charitable effortsof the Junior League of Akron and its projects.</p>
+  
+    <ul class="akron-images">
+      <li class="image-row" *ngFor="let image of akronImages">
+        <div class="image-holder">
+          <img [src]="image.src" [title]="image.alt" [alt]="image.alt">
+        </div>
+        <div class="text-holder">
+          <div class="info-text">{{image.info}}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <app-footer></app-footer>
+</main>

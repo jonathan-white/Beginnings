@@ -1,0 +1,15 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="brand-menu">
+      <a routerLink="/home" class="link-read-more">Beginnings</a>	
+    </div>
+  </div>
+  <div class="nav-right">
+    <app-recipe-search></app-recipe-search>
+    <a class="nav-recipe-category-link" routerLink="{{link.path}}" *ngFor="let link of links">
+      <div class="title">{{link.label}}</div>
+      <div class="subtitle">Recipes</div>
+    </a>
+  </div>
+</nav>

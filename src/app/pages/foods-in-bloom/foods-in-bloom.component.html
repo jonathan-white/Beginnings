@@ -1,0 +1,15 @@
+<!-- Main Content -->
+<main class="content-wrapper">
+  <div class="content">
+    <div id="flower-preview"></div>
+    <h2>Foods in Bloom <span class="subtitle">- A Listing of Edible Flowers</span></h2>
+    <ul class="edible-flowers">
+      <li class='flower-entry' attr.data-img="{{flower.image}}" *ngFor="let flower of flowers"
+        (mouseover)="displayFlower(flower.image)">
+        <h2>{{flower.name}}</h2>
+        <p class='flower-text'>{{flower.descr}}</p>
+      </li>
+    </ul>
+  </div>
+  <app-footer></app-footer>
+</main>

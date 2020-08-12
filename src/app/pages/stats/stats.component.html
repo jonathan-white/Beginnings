@@ -1,0 +1,272 @@
+<div *ngIf="recipes">
+  <main class="content-wrapper">
+    <div class="container">
+      <h2>Recipe Stats</h2>
+      <div class="stats-section general">
+        <div># of Recipes: {{recipeCount()}}</div>
+        <div># of Ingredients: {{ingredientCount()}}</div>
+        <div># of Instruction Steps: {{stepCount()}}</div>
+        <div># of recipes with ingredients: {{recipesWithIngredients(0)}}</div>
+        <div># of recipes with instruction steps: {{recipesWithInstructionsCount()}}</div>
+      </div>
+
+      <hr>
+
+      <div class="stats-section" *ngFor="let item of sections">
+        <h3>Casual Recipes (clone)</h3>
+        <div># of Casual Recipes: {{recipeCount('casual')}}</div>
+        <div># of Casual Ingredients: {{ingredientCount('casual')}}</div>
+        <div># of Casual Instruction Steps: {{stepCount('casual')}}</div>
+        <div># of Casual recipes with instruction steps: {{recipesWithInstructionsCount('casual')}}</div>
+        <div class="recipes-table-container casual">
+          <table>
+            <tr>
+              <th class="title-col">Recipe Title</th>
+              <th class="ing-col"># of Ingredients</th>
+              <th class="step-col"># of Instructions</th>
+            </tr>
+            <tr *ngFor="let recipe of recipes | sectionFilter: 'casual'">
+              <td>
+                <div class="recipe-row">
+                  <div><i class="fas fa-pencil-alt btn-edit" (click)="editRecipe(recipe._id)"></i></div>
+                  <div><a href="/recipes/casual/{{recipe.techTitle}}">{{recipe.displayName}}</a></div>
+                </div>
+              </td>
+              <td class="recipe-row ingr-details">
+                <div class="ingr-count">{{recipe.ingredients.length}}</div>
+                <div class="ingr-attributes">
+                  <div>
+                    Description:
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDescriptionCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDescriptionCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    DisplayName: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDisplayNameCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDisplayNameCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Qty: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingQtyCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingQtyCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Unit: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingUnitCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingUnitCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Item: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingItemCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingItemCounts(recipe.ingredients)"></i>
+                  </div>
+                </div>
+              </td>
+              <td>{{stepCounts(recipe.instructions)}}</td>
+            </tr>
+            <tr>
+              <td>Count: {{recipeCount('casual')}}</td>
+              <td>Total Ingredients: {{ingredientCount('casual')}}</td>
+              <td>Total Instructions: {{stepCount('casual')}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="stats-section casual">
+        <h3>Casual Recipes</h3>
+        <div># of Casual Recipes: {{recipeCount('casual')}}</div>
+        <div># of Casual Ingredients: {{ingredientCount('casual')}}</div>
+        <div># of Casual Instruction Steps: {{stepCount('casual')}}</div>
+        <div># of Casual recipes with instruction steps: {{recipesWithInstructionsCount('casual')}}</div>
+        <div class="recipes-table-container casual">
+          <table>
+            <thead>
+              <tr>
+                <th class="title-col">Recipe Title</th>
+                <th class="ing-col"># of Ingredients</th>
+                <th class="step-col"># of Instructions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let recipe of recipes | sectionFilter: 'casual'">
+                <td>
+                  <div class="recipe-row">
+                    <div><i class="fas fa-pencil-alt btn-edit" (click)="editRecipe(recipe._id)"></i></div>
+                    <div><a href="/recipes/casual/{{recipe.techTitle}}">{{recipe.displayName}}</a></div>
+                  </div>
+                </td>
+                <td class="recipe-row ingr-details">
+                  <div class="ingr-count">{{recipe.ingredients.length}}</div>
+                  <div class="ingr-attributes">
+                    <div>
+                      Description:
+                      <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDescriptionCounts(recipe.ingredients)"></i>
+                      <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDescriptionCounts(recipe.ingredients)"></i>
+                    </div>
+                    <div>
+                      DisplayName: 
+                      <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDisplayNameCounts(recipe.ingredients)"></i>
+                      <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDisplayNameCounts(recipe.ingredients)"></i>
+                    </div>
+                    <div>
+                      Qty: 
+                      <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingQtyCounts(recipe.ingredients)"></i>
+                      <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingQtyCounts(recipe.ingredients)"></i>
+                    </div>
+                    <div>
+                      Unit: 
+                      <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingUnitCounts(recipe.ingredients)"></i>
+                      <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingUnitCounts(recipe.ingredients)"></i>
+                    </div>
+                    <div>
+                      Item: 
+                      <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingItemCounts(recipe.ingredients)"></i>
+                      <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingItemCounts(recipe.ingredients)"></i>
+                    </div>
+                  </div>
+                </td>
+                <td>{{stepCounts(recipe.instructions)}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Count: {{recipeCount('casual')}}</td>
+                <td>Total Ingredients: {{ingredientCount('casual')}}</td>
+                <td>Total Instructions: {{stepCount('casual')}}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="stats-section classic">
+        <h3>Classic Recipes</h3>
+        <div># of Classic  Recipes: {{recipeCount('classic')}}</div>
+        <div># of Classic Ingredients: {{ingredientCount('classic')}}</div>
+        <div># of Classic Instruction Steps: {{stepCount('classic')}}</div>
+        <div># of Classic recipes with instruction steps: {{recipesWithInstructionsCount('classic')}}</div>
+        <div class="recipes-table-container classic">
+          <table>
+            <tr>
+              <th class="title-col">Recipe Title</th>
+              <th class="ing-col"># of Ingredients</th>
+              <th class="step-col"># of Instructions</th>
+            </tr>
+            <tr *ngFor="let recipe of recipes | sectionFilter: 'classic'">
+              <td>
+                <div class="recipe-row">
+                  <div><i class="fas fa-pencil-alt btn-edit"></i></div>
+                  <div><a href="/recipes/classic/{{recipe.techTitle}}">{{recipe.displayName}}</a></div>
+                </div>
+              </td>              
+              <td class="recipe-row ingr-details">
+                <div class="ingr-count">{{recipe.ingredients.length}}</div>
+                <div class="ingr-attributes">
+                  <div>
+                    Description:
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDescriptionCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDescriptionCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    DisplayName: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDisplayNameCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDisplayNameCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Qty: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingQtyCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingQtyCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Unit: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingUnitCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingUnitCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Item: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingItemCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingItemCounts(recipe.ingredients)"></i>
+                  </div>
+                </div>
+              </td>
+              <td>{{stepCounts(recipe.instructions)}}</td>
+            </tr>
+            <tr>
+              <td>Count: {{recipeCount('classic')}}</td>
+              <td>Total Ingredients: {{ingredientCount('classic')}}</td>
+              <td>Total Instructions: {{stepCount('classic')}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="stats-section elegant">
+        <h3>Elegant Recipes</h3>
+        <div># of Elegant Recipes: {{recipeCount('elegant')}}</div>
+        <div># of Elegant Ingredients: {{ingredientCount('elegant')}}</div>
+        <div># of Elegant Instruction Steps: {{stepCount('elegant')}}</div>
+        <div># of Elegant recipes with instruction steps: {{recipesWithInstructionsCount('elegant')}}</div>
+        <div class="recipes-table-container elegant">
+          <table>
+            <tr>
+              <th class="title-col">Recipe Title</th>
+              <th class="ing-col"># of Ingredients</th>
+              <th class="step-col"># of Instructions</th>
+            </tr>
+            <tr *ngFor="let recipe of recipes | sectionFilter: 'elegant'">
+              <td>
+                <div class="recipe-row">
+                  <div><i class="fas fa-pencil-alt btn-edit"></i></div>
+                  <div><a href="/recipes/elegant/{{recipe.techTitle}}">{{recipe.displayName}}</a></div>
+                </div>
+              </td>
+              <td class="recipe-row ingr-details">
+                <div class="ingr-count">{{recipe.ingredients.length}}</div>
+                <div class="ingr-attributes">
+                  <div>
+                    Description:
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDescriptionCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDescriptionCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    DisplayName: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingDisplayNameCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingDisplayNameCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Qty: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingQtyCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingQtyCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Unit: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingUnitCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingUnitCounts(recipe.ingredients)"></i>
+                  </div>
+                  <div>
+                    Item: 
+                    <i class="fas fa-check" *ngIf="recipe.ingredients.length === ingItemCounts(recipe.ingredients)"></i>
+                    <i class="fas fa-times" *ngIf="recipe.ingredients.length != ingItemCounts(recipe.ingredients)"></i>
+                  </div>
+                </div>
+              </td>
+              <td>{{stepCounts(recipe.instructions)}}</td>
+            </tr>
+            <tr>
+              <td>Count: {{recipeCount('elegant')}}</td>
+              <td>Total Ingredients: {{ingredientCount('elegant')}}</td>
+              <td>Total Instructions: {{stepCount('elegant')}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+</div>  

@@ -1,0 +1,39 @@
+<div class='search'>
+  <input #searchBox id="searchbox" placeholder="I'm hungry for..." 
+    autocomplete="off" (input)="quickSearch(searchBox.value, 10); enableResults()"
+    (keydown.enter)="goToResults(searchBox.value); clearSearch()" />
+  <div class="btn-advanced-search" (click)="toggleAdvancedMenu()">
+    <ng-container *ngIf="showAdvancedMenu">
+      <i class="fas fa-sort-up"></i>
+    </ng-container>
+    <ng-container *ngIf="!showAdvancedMenu">
+      <i class="fas fa-sort-down"></i>
+    </ng-container>
+  </div>
+  <ul class='quick-search-results' [hidden]="clearResults">
+    <li class="results-item" *ngFor="let recipe of recipes$ | async">
+      <a routerLink="/recipes/{{recipe.section}}/{{recipe.techTitle}}"
+        routerLinkActive="active" (click)="searchBox.value = ''; clearSearch(); $event.stopPropagation();">
+        {{recipe.displayName}}
+      </a>
+    </li>
+  </ul>
+  <form class="advanced-menu" [hidden]="!showAdvancedMenu">
+    <div>
+      <span class="advanced-search-title">Advanced Search:</span>
+    </div>
+    <fieldset class="advanced-search-option">
+      <label class="adv-search-label" for="craving">I'm craving:</label>
+      <input class="adv-search-input" id="craving" type="text">
+    </fieldset>
+    <fieldset class="advanced-search-option">
+      <label class="adv-search-label" for="avoid">I don't want:</label>
+      <input class="adv-search-input" id="avoid" type="text">
+    </fieldset>
+    <fieldset class="advanced-search-option">
+      <label class="adv-search-label" for="allergic">I'm allergic to:</label>
+      <input class="adv-search-input" id="allergic" type="text">
+    </fieldset>
+    <button class="btn-adv-search">Search</button>
+  </form>
+</div> 
