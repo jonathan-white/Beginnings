@@ -157,8 +157,10 @@ blockquote {
 
 .vision-statement {
 	background: linear-gradient(to right, #6cf,#da1b60);
+  background-clip: border-box;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+  box-decoration-break: clone;
 	-webkit-box-decoration-break: clone;
 	font-weight: 700;
 }
