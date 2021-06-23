@@ -21,7 +21,7 @@ export class RecipeSearchComponent implements OnInit {
   private searchTerms = new Subject<string>();
   clearResults = false;
   private resultsLimit: number;
-  private showAdvancedMenu = false;
+  showAdvancedMenu = false;
 
   constructor(
     private recipeService: RecipeService,
