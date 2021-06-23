@@ -1,5 +1,5 @@
 <!-- Side Navigation -->
-<aside class="sidenav" [ngClass]="{'displayMenu' : showMenu}">
+<aside class="sidenav" [ngClass]="{'displayMenu' : 'showMenu'}">
 	<ul class="sidenav-links-list">
     <li class="sidenav-item" *ngFor="let link of links">
       <a class="sidenav-link" routerLink="{{link.path}}">{{link.label}}</a>
