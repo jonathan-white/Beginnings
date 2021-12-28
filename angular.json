@@ -35,10 +35,16 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": false,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -78,7 +84,10 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ]
+            ],
+            "configurations": {
+              
+            }
           }
         },
         "lint": {

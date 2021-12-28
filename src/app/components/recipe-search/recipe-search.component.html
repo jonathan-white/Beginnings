@@ -3,10 +3,10 @@
     autocomplete="off" (input)="quickSearch(searchBox.value, 10); enableResults()"
     (keydown.enter)="goToResults(searchBox.value); clearSearch()" />
   <div class="btn-advanced-search" (click)="toggleAdvancedMenu()">
-    <ng-container *ngIf="showAdvancedMenu">
+    <ng-container *ngIf="getAdvancedMenu()">
       <i class="fas fa-sort-up"></i>
     </ng-container>
-    <ng-container *ngIf="!showAdvancedMenu">
+    <ng-container *ngIf="!getAdvancedMenu()">
       <i class="fas fa-sort-down"></i>
     </ng-container>
   </div>
@@ -18,7 +18,7 @@
       </a>
     </li>
   </ul>
-  <form class="advanced-menu" [hidden]="!showAdvancedMenu">
+  <form class="advanced-menu" [hidden]="!getAdvancedMenu()">
     <div>
       <span class="advanced-search-title">Advanced Search:</span>
     </div>

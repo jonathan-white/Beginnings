@@ -66,5 +66,7 @@ export class RecipeSearchComponent implements OnInit {
     this.showAdvancedMenu = !this.showAdvancedMenu;
   }
 
-
+  getAdvancedMenu() {
+    return this.showAdvancedMenu;
+  }
 }

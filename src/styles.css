@@ -123,12 +123,12 @@ app-nav-menu {
   position: relative;
 }
 
-app-nav-menu .sidenav{
+app-nav-menu .sidenav {
   height: 0;
   transition: height 300ms;
 }
 
-app-nav-menu.displayMenu .sidenav{
+app-nav-menu.displayMenu .sidenav {
   height: 555px;
 }
 
@@ -144,7 +144,7 @@ li:first-of-type .sidenav-link:hover {
 li:last-of-type .sidenav-link:hover {
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
-} */
+}
 
 /* Blockquotes */
 /* =============================================*/
