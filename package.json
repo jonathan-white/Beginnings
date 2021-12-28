@@ -9,7 +9,7 @@
     "start": "npm run build & concurrently --kill-others -c \"yellow.bold,green.bold\" -n \"SERVER,CLIENT\" \"npm run serve-api\" \"npm run serve --open\"",
     "run": "npm run build & concurrently --kill-others -c \"yellow.bold,green.bold\" -n \"SERVER,CLIENT\" \"npm run serve-api\" \"npm run serve --open\"",
     "serve": "ng serve --proxy-config proxy.config.json",
-    "build": "ng build --output-path=dist",
+    "build": "ng build --output-path",
     "serve-api": "nodemon server",
     "test": "ng test",
     "lint": "ng lint",
